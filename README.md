@@ -1,7 +1,8 @@
 # Influence of microbiota on the effectiveness of immunotherapeutic drugs in the treatment of metastatic solid tumors
 
-Authors: Kupaeva D., Soghomonyan K. S.
-Supervisor: Sidorenko S.V.
+#### Authors: Kupaeva D., Soghomonyan K. S.
+
+#### Supervisor: Sidorenko S.V.
 
 This repository contains materials prepared by students of the Institute of Bioinformatics in the course of work on a semester project devoted to the analysis of the fecal microbiota of cancer patients.
 
