@@ -39,9 +39,8 @@ To determine the prognostic and predictive value of the taxonomic composition of
 2.  dada2 - folder with all scripts which used for the taxonomic estimate with dada2 and normalization the results using deseq2
 3.  ML_analysis.ipynb - ML analisys of data from dada2-phyloseq-deseq2 pipeline
 4.  metadata_preprocessing.ipynb - code used to prepare diversity data and metadata for further work
-5.  data_ml_analysis.ipynb -the code used to analyze the received data using machine learning methods
-6.  Sogomonyan_Kupaeva__spring_2021.pdf - detailed presentation with all the results obtained
-7.  README.md - this file
+5.  Sogomonyan_Kupaeva__spring_2021.pdf - detailed presentation with all the results obtained
+6.  README.md - this file
 
 ## Summary of results
 Despite our approaches, we were unable to find significant differences in fecal microbiota that would allow us to predict differences in response to therapy. The fecal microbiota of patients with different types of response to therapy does not differ in either the alpha or beta diversity of the community.
