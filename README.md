@@ -45,11 +45,11 @@ To determine the prognostic and predictive value of the taxonomic composition of
 ## Summary of results
 Despite our approaches, we were unable to find significant differences in fecal microbiota that would allow us to predict differences in response to therapy. The fecal microbiota of patients with different types of response to therapy does not differ in either the alpha or beta diversity of the community.
 Analysis of the differential abundance of taxa reveals only one taxon: Anaerosinus glycerini. According to our data, the number of representatives of this taxon is higher in patients who did not respond to therapy, and this taxon has already been identified as correlating with the effectiveness of therapy in patients with metastatic gastric cancer. However, according to the data on biomass accumulation with a change in the proportion of the sample, this taxon makes it possible to distinguish only a small proportion of patients. In doing so, we found differentially present taxa, as well as differences in the alpha diversity of the community in patients with different types of cancer.
-<img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/taxon_analysis.png" width="500" height="700">
+<img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/taxon_analysis.png" width="500" height="650">
 
 The use of machine learning methods, however, allowed us to build a model that, with a sufficiently high reliability (accuracy 0.75 when using Logitboost linear regression based on quantitative dada2 data, normalized deseq2), can predict the treatment outcome based on quantitative and qualitative data on the composition of fecal microbiota. Analysis of the most influential predictors of the model reveals taxa for which correlations with the success of therapy are already known (Ruminococacceae, Carnobacteriaceae and Bacterioaceae, etc.). However, the list of predictors is not reproducible when using a different set of methods.
 
-<img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/model_metrics-01.png" width="500" height="600">
+<img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/model_metrics-01.png" width="500" height="550">
 
 ## Conclusion
 We were unable to identify strong correlations or significant differences between the taxonomic composition of the fecal microbiota of patients and the effectiveness of treatment control points. We believe that the most likely reasons for this are the heterogeneity of patient diagnoses and the use of therapy that blocks different types of receptors.
