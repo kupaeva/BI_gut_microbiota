@@ -1,0 +1,173 @@
+---
+title: "Phyloseq"
+author: "Sogomonyan Karina"
+date: "27 05 2021"
+output: html_document
+---
+
+# Handoff to phyloseq
+```{r include=FALSE}
+library(phyloseq); packageVersion("phyloseq")
+library(Biostrings); packageVersion("Biostrings")
+library(ggplot2); packageVersion("ggplot2")
+library(dplyr)
+library(vegan)
+library(DESeq2)
+library(gtools)
+library(stringr)
+library(tidyr)
+theme_set(theme_bw())
+```
+
+```{r include=FALSE}
+seqtab.nochim <- read.csv('Seq_nonchim')
+```
+
+
+```{r echo=TRUE}
+samples.out <- rownames(seqtab.nochim)
+subject <- sapply(strsplit(samples.out, "D"), `[`, 1)
+samdf <- data.frame(Subject=subject)
+rownames(samdf) <- samples.out
+```
+
+### Add information about an objective response in treatment
+```{r echo=TRUE}
+sam_d <- read.csv('/home/karina_mermaid/tools/1cloud/onko_metagenome/samp_dt.csv')
+sam_d  <-  sam_d[c(2,3)]
+sam_d <- sam_d %>%  add_row(filename_part1 = '75', Объективный.ответ = NA)
+
+mer <- merge(samdf, sam_d, by.x="Subject", by.y = 'filename_part1')
+mer <- mer %>% rename(Response = Объективный.ответ )
+mer <- mer %>% mutate_if(is.character, list(~na_if(.,""))) 
+rownames(mer) <-  samples.out
+```
+
+
+### Do phyloseq object
+```{r echo=TRUE}
+ps <- phyloseq(otu_table(seqtab.nochim, taxa_are_rows=FALSE), 
+               sample_data(mer), 
+               tax_table(taxa))
+
+head(sample_data(ps)$Response, 10)
+```
+
+
+### Transform the table so as to get ASV numbers in the table with taxa, but the sequences themselves remained in the object
+```{r echo=TRUE}
+ps <- prune_samples(sample_names(ps), ps) # Remove mock sample
+dna <- Biostrings::DNAStringSet(taxa_names(ps))
+names(dna) <- taxa_names(ps)
+ps <- merge_phyloseq(ps, dna)
+taxa_names(ps) <- paste0("ASV", seq(ntaxa(ps)))
+ps
+```
+
+### Rarecurve for samples
+```{r}
+# Shows how the variety changes depending on the size of the library (sample)
+rarecurve((otu_table(ps)), step=100, cex=0.5)
+
+```
+
+Judging by the graph, the richness is highly dependent on the size of the library, so normalization is necessary
+
+
+--------------------------------------------------------------------------------------------------------------------------
+### Normalization with Deseq2
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+#Convert phyloseq object to deseq2 object 
+ps_n <- subset_samples(ps, Response != "None")
+ps_n <- prune_samples(sample_sums(ps_n) > 500, ps_n)
+ps_n
+diagdds = phyloseq_to_deseq2(ps_n, ~ Response)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+diagdds = estimateSizeFactors(diagdds, type="poscounts")
+diagdds = estimateDispersions(diagdds, fitType = "local")
+diagdds = DESeq(diagdds, fitType="local")
+pst <- varianceStabilizingTransformation(diagdds) #This function calculates a variance stabilizing transformation (VST) from the fitted dispersion-mean relation(s) and then transforms the count data (normalized by division by the size factors or normalization factors), yielding a matrix of values which are now approximately homoskedastic.
+```
+
+### Assigning normalized values to the phyloseq object
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+pst.dimmed <- t(as.matrix(assay(pst)))
+pst.dimmed[pst.dimmed < 0.0] <- 0.0
+ps.varstab <- ps_n
+otu_table(ps.varstab) <- otu_table(pst.dimmed, taxa_are_rows = FALSE)
+```
+
+------------------------------------------------------------------------------------------------------------------------
+### Built a barplot according to the top 20 plylum
+```{r echo=TRUE}
+top20 <- names(sort(taxa_sums(ps.varstab), decreasing=TRUE))[1:20]
+ps.top20 <- transform_sample_counts(ps.varstab, function(OTU) OTU/sum(OTU))
+ps.top20 <- prune_taxa(top20, ps.top20)
+plot_bar(ps.top20, x="Subject", fill="Phylum")
+```
+
+### Get the abundance table with taxanomic information of each ASV for each subject
+
+```{r message=FALSE, warning=FALSE}
+family<-as.data.frame(tax_table(ps.varstab))
+short_tax<-family[1:5]
+short_otu<-as.data.frame(otu_table(ps.varstab))
+short_otu_ps <-as.data.frame(otu_table(ps.varstab))
+short_tax_T <- as.data.frame(t(short_tax))
+short_otu_T <- as.data.frame(t(short_otu))
+info<-cbind(short_tax, short_otu_T)
+res_phylum <- info %>% group_by(Phylum) %>% summarise_if(.predicate = is.numeric, funs(sum))
+res_family <-info %>% group_by(Family) %>% summarise_if(.predicate = is.numeric, funs(sum))
+res_order <-info %>% group_by(Order) %>% summarise_if(.predicate = is.numeric, funs(sum))
+```
+
+
+### Сonvert the number to percent
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+data_percentage <- as.data.frame(apply(res_phylum[,2:66], 2, function(x){x*100/sum(x)}))
+data_percentage_with_phylum <- cbind(res_phylum[, 1], data_percentage)
+
+```
+
+### Convert to long datatype and plot percentage stacked barplot
+```{r}
+# Convert into long data
+long_data<-data_percentage_with_phylum %>%
+   pivot_longer(!Phylum, names_to = "samples", values_to = "percent")
+```
+
+
+
+```{r}
+sortered <- mixedsort(long_data$samples)
+long_data_rearrenge <- long_data[mixedorder(long_data$samples),]
+
+ggplot(long_data_rearrenge, aes(fill=Phylum, y=percent, x = samples)) + 
+   geom_bar(stat="identity",  width=13) +
+   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+   scale_x_discrete(limits=long_data_rearrenge$samples)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

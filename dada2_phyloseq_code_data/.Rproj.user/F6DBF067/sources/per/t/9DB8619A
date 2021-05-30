@@ -1,0 +1,25 @@
+{
+    "id": "9DB8619A",
+    "path": "~/meta_proj/dada2_pipe/dada2.R",
+    "project_path": "dada2.R",
+    "type": "r_source",
+    "hash": "3019646769",
+    "contents": "",
+    "dirty": false,
+    "created": 1616090375342.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "26,0",
+        "scrollLine": "8"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1616157872,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1616157872674,
+    "read_only": false,
+    "read_only_alternatives": []
+}
