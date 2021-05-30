@@ -34,16 +34,14 @@ To determine the prognostic and predictive value of the taxonomic composition of
 + search for the most influential taxa and metadata, predicting the outcome of therapy using the most influential predictors
 > *k-NN + LogitBoost, sklearn.linear_model.LogisticRegression,  sklearn.ensemble.RandomForestClassifier, skrearn.feature_selection, Logitboost & GradientBoostingClassifier and others.*
   
-## Repository composition
+## Repository content
 1.  qiime_usage.pdf - commands used when working with qiime and examples of the results obtained
-2.  dada2_workflow.R - code used to run the taxonomic estimate with dada2 and normalize the results using deseq2
-3.  Phyloseq_obj.Rmd - code for processing metagenomic data obtained in dada2 using the phyloseq package
-4.  ML_with_normalized_in_Deseq2_data.ipynb - ML analisys of data from dada2-phyloseq-deseq2 pipeline
-5.  dada2_phyloseq_img - folder with images from dada2-phyloseq pipeline
-6.  metadata_preprocessing.ipynb - code used to prepare diversity data and metadata for further work
-7.  data_ml_analysis.ipynb -the code used to analyze the received data using machine learning methods
-8.  Sogomonyan_Kupaeva__spring_2021.pdf - detailed presentation with all the results obtained
-9.  Sogomonyan_Kupaeva__spring_2021.doc - abstract description of the results
+2.  dada2 - folder with all scripts which used for the taxonomic estimate with dada2 and normalization the results using deseq2
+3.  ML_analysis.ipynb - ML analisys of data from dada2-phyloseq-deseq2 pipeline
+4.  metadata_preprocessing.ipynb - code used to prepare diversity data and metadata for further work
+5.  data_ml_analysis.ipynb -the code used to analyze the received data using machine learning methods
+6.  Sogomonyan_Kupaeva__spring_2021.pdf - detailed presentation with all the results obtained
+7.  README.md - this file
 
 ## Summary of results
 Despite our approaches, we were unable to find significant differences in fecal microbiota that would allow us to predict differences in response to therapy. The fecal microbiota of patients with different types of response to therapy does not differ in either the alpha or beta diversity of the community.
