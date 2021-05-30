@@ -48,7 +48,8 @@ Analysis of the differential abundance of taxa reveals only one taxon: Anaerosin
 <img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/taxon_analysis.png" width="500" height="700">
 
 The use of machine learning methods, however, allowed us to build a model that, with a sufficiently high reliability (accuracy 0.75 when using Logitboost linear regression based on quantitative dada2 data, normalized deseq2), can predict the treatment outcome based on quantitative and qualitative data on the composition of fecal microbiota. Analysis of the most influential predictors of the model reveals taxa for which correlations with the success of therapy are already known (Ruminococacceae, Carnobacteriaceae and Bacterioaceae, etc.). However, the list of predictors is not reproducible when using a different set of methods.
-<img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/model_metrics-01.png" width="500" height="700">
+
+<img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/model_metrics-01.png" width="500" height="600">
 
 ## Conclusion
 We were unable to identify strong correlations or significant differences between the taxonomic composition of the fecal microbiota of patients and the effectiveness of treatment control points. We believe that the most likely reasons for this are the heterogeneity of patient diagnoses and the use of therapy that blocks different types of receptors.
