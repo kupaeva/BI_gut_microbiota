@@ -8,8 +8,11 @@ This repository contains materials prepared by students of the Institute of Bioi
 ## Introduction
 
 Tumor cells use immune checkpoint pathways to evade the host's immune system and suppress immune cell function. The use of immune checkpoint inhibitors can suppress this signal. This type of therapy can be an effective strategy for the treatment of patients with solid metastatic tumors. However, the outcome of immunotherapy is difficult to predict, since there are currently not enough prognostic biomarkers known. Fecal microbiota can be considered as one of the prognostic markers and even as a factor in the success of therapy.
+
 The generally accepted standard for the analysis of fecal microbiota is the analysis of the composition of the operating taxonomic units (OTU) of the microbiome based on 16S amplicon sequencing. The most commonly used packages are DADA2 and QIIME2. Although analysis of the microbiome using shotgun sequences allows for more reliable determination of taxonomic composition, gene sequences in plasmids, and genetic variation, amplicon sequencing is much cheaper and methodologically more accessible for mainstream use. The analysis of taxonomic diversity makes it possible to identify differences at the level of alpha and beta diversity of communities, to identify influential taxa, and to plan functional experiments, including those involving the transfer of fecal microbiota.
+
 For some taxa, the correlation of bacterial biomass with progress in tumor treatment is already known. Thus, *Bifidobacterium spp* correlates with increased tumor infiltration with CD8+ T cells, and artificial administration of *Bifidobacterium spp* to mice that did not respond to therapy increases the effectiveness of therapy. The fecal microbiota of patients with metastatic melanoma responding to ipilimumab therapy is enriched in *Faecalibacterium prausnitzii*, *Gemmiger formicilis*, and *butyrate-producing bacterium SS2-1*. Today, many correlations are known between individual taxa and the effectiveness of therapy - however, these correlations are rarely reproduced in patients with different therapies and different types of tumors.
+
 In this work, we analyzed the composition of the fecal microbiota and looked for correlations in patients with severe metastatic tumors. The unifying factor of the patients was that they all received checkpoint immunotherapy. A serious complicating factor in this study was the heterogeneity of the sample: different diagnoses, different variants of histology, the use of different inhibitors.
 
 ## Objective of the project
@@ -23,13 +26,13 @@ To determine the prognostic and predictive value of the taxonomic composition of
 
 ## What was done
 + analysis of taxonomic diversity (OTU / ASV) of fecal microbiome of patients
-..+ *dada2 v (1.16)., Qiime2 v.2021-02*
++ *dada2 v (1.16)., Qiime2 v.2021-02*
 + normalization of quantitative data of diversity
-..+ *DESeq2  v.(3.11)*
++ *DESeq2  v.(3.11)*
 + analysis of environmental metrics
-..+ *Qiime2 v.2021-02*
++ *Qiime2 v.2021-02*
 + search for the most influential taxa and metadata, predicting the outcome of therapy using the most influential predictors
-..+ *k-NN + LogitBoost, sklearn.linear_model.LogisticRegression,  sklearn.ensemble.RandomForestClassifier, skrearn.feature_selection, Logitboost & GradientBoostingClassifier and others.*
++ *k-NN + LogitBoost, sklearn.linear_model.LogisticRegression,  sklearn.ensemble.RandomForestClassifier, skrearn.feature_selection, Logitboost & GradientBoostingClassifier and others.*
   
 ## Repository composition
 1.  qiime_usage.pdf - commands used when working with qiime and examples of the results obtained
@@ -44,6 +47,7 @@ To determine the prognostic and predictive value of the taxonomic composition of
 
 ## Summary of results
 Despite our approaches, we were unable to find significant differences in fecal microbiota that would allow us to predict differences in response to therapy. The fecal microbiota of patients with different types of response to therapy does not differ in either the alpha or beta diversity of the community.
+
 Analysis of the differential abundance of taxa reveals only one taxon: Anaerosinus glycerini. According to our data, the number of representatives of this taxon is higher in patients who did not respond to therapy, and this taxon has already been identified as correlating with the effectiveness of therapy in patients with metastatic gastric cancer. However, according to the data on biomass accumulation with a change in the proportion of the sample, this taxon makes it possible to distinguish only a small proportion of patients. In doing so, we found differentially present taxa, as well as differences in the alpha diversity of the community in patients with different types of cancer.
 <img src="https://github.com/kupaeva/BI_gut_microbiota/blob/main/taxon_analysis.png" width="500" height="650">
 
