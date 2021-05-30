@@ -23,13 +23,13 @@ To determine the prognostic and predictive value of the taxonomic composition of
 
 ## What was done
 + analysis of taxonomic diversity (OTU / ASV) of fecal microbiome of patients
-  *dada2 v (1.16)., Qiime2 v.2021-02*
+..+ *dada2 v (1.16)., Qiime2 v.2021-02*
 + normalization of quantitative data of diversity
-  *DESeq2  v.(3.11)*
+..+ *DESeq2  v.(3.11)*
 + analysis of environmental metrics
-  *Qiime2 v.2021-02*
+..+ *Qiime2 v.2021-02*
 + search for the most influential taxa and metadata, predicting the outcome of therapy using the most influential predictors
-  *k-NN + LogitBoost, sklearn.linear_model.LogisticRegression,  sklearn.ensemble.RandomForestClassifier, skrearn.feature_selection, Logitboost & GradientBoostingClassifier and others.*
+..+ *k-NN + LogitBoost, sklearn.linear_model.LogisticRegression,  sklearn.ensemble.RandomForestClassifier, skrearn.feature_selection, Logitboost & GradientBoostingClassifier and others.*
   
 ## Repository composition
 1.  qiime_usage.pdf - commands used when working with qiime and examples of the results obtained
