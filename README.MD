@@ -37,8 +37,8 @@ To determine the prognostic and predictive value of the taxonomic composition of
 ## Repository content
 1.  **qiime_usage.pdf** - commands used when working with qiime and examples of the results obtained
 2.  **dada2_phyloseq_deseq2_code_data** - folder with all scripts which used for the taxonomic estimate with dada2 and normalization the results using deseq2
-3.  **ML_analysis.ipynb** - ML analisys of data from dada2-phyloseq-deseq2 pipeline
-4.  **metadata_preprocessing.ipynb** - code used to prepare diversity data and metadata for further work
+3.  **metadata_preprocessing.ipynb** - code used to prepare diversity data and metadata for further work
+4.  **ML_analysis.ipynb** - ML analisys of data from dada2-phyloseq-deseq2 pipeline
 5.  **Sogomonyan_Kupaeva__spring_2021.pdf** - detailed presentation with all the results obtained
 6.  **README.md** - this file
 
