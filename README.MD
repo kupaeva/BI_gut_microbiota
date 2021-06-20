@@ -3,7 +3,7 @@
 #### Authors: Kupaeva D., Soghomonyan K. S.
 #### Supervisor: Sidorenko S.V.
 
-This repository contains materials prepared by students of the Institute of Bioinformatics in the course of work on a semester project devoted to the analysis of the fecal microbiota of cancer patients.
+This repository contains materials prepared by students of the Bioinformatic Institute during the work with a semester project devoted to the analysis of the fecal microbiota of cancer patients.
 
 ## Introduction
 
